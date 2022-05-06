@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 THIS_PATH=`realpath ${BASH_SOURCE[0]}`
+
+# cbfl library must be sourced on bashrc.
+source ~/.bashrc
+
 source $(dirname $THIS_PATH)/network.sh
 source $(dirname $THIS_PATH)/configure.sh
 source $(dirname $THIS_PATH)/process.sh
@@ -13,7 +17,6 @@ function input_popup() {
     #   $4: height
     envar_key="__input"
     tmux display-popup -x R -y P -w $3 -h $4 -E "bash -c ' \
-        set -e                                            ;\
         printf \"\e[1;34m%-6s\e[m\n\" \" $2\"             ;\
         printf \"%0.s═\" {1..$(( $3 - 2 ))}               ;\
         read -p \" > \" input                             ;\
@@ -29,10 +32,12 @@ function input_popup() {
 }
 
 function show_main_menu() {
+    current_dir=$(shorten_pwd $1)
+
     tmux display-menu -T "#[align=centre fg=yellow] Menu " -x R -y P                         \
         ""                                                                                   \
-        "-#[nodim] $(date +%F) "    ""  ""                                                   \
-        "-#[nodim] $(date +%T) "    ""  ""                                                   \
+        "-#[nodim] $current_dir "              ""  ""                                        \
+        "-#[nodim] $(date +%F) $(date +%T)"    ""  ""                                        \
         ""                                                                                   \
         "Network"                   n   "run -b 'source $THIS_PATH && show_network_menu'"    \
         "Process"                   p   "run -b 'source $THIS_PATH && show_process_menu'"    \
