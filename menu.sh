@@ -7,6 +7,7 @@ source ~/.bashrc
 
 source $(dirname $THIS_PATH)/network.sh
 source $(dirname $THIS_PATH)/configure.sh
+source $(dirname $THIS_PATH)/git.sh
 source $(dirname $THIS_PATH)/process.sh
 
 function input_popup() {
@@ -39,13 +40,19 @@ function show_main_menu() {
         "-#[nodim] $current_dir "              ""  ""                                        \
         "-#[nodim] $(date +%F) $(date +%T)"    ""  ""                                        \
         ""                                                                                   \
+        "GitHub"                       g   "run -b 'source $THIS_PATH && show_git_menu'"  \
         "Network"                   n   "run -b 'source $THIS_PATH && show_network_menu'"    \
         "Process"                   p   "run -b 'source $THIS_PATH && show_process_menu'"    \
         "Configure"                 c   "run -b 'source $THIS_PATH && show_configure_menu'"  \
+        "Test"                      t   "run -b 'source $THIS_PATH && do_test'"  \
         ""                                                                                   \
         "Close"                     q   "run -b 'source $THIS_PATH && close_menu'"
 }
 
 function close_menu() {
     :
+}
+
+function do_test() {
+    tmux display-popup -x R -y P -w 80 -h 30 -E "zsh -c 'cd ~/project/menu && cargo run'"
 }
