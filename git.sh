@@ -5,11 +5,15 @@ function show_gh_status() {
 }
 
 function show_gh_dash() {
-    tmux display-popup -x R -y P -w 50% -h 45 "gh dash" || true
+    tmux display-popup -x R -y P -w 50% -h 45 -E "gh dash" || true
 }
 
 function show_git_ui() {
-    tmux display-popup -x R -y P -w 75% -h 70% "gitui -d $1" || true
+    tmux display-popup -x R -y P -w 75% -h 70% -E "gitui -d $1" || true
+}
+
+function edit_gh_dash() {
+    tmux display-popup -x R -y P -w 70 -h 30 -E "nvim $MYDOTFILES/gh-dash/config.yml"
 }
 
 function show_git_menu() {
@@ -24,5 +28,6 @@ function show_git_menu() {
         "status"            n "run -b 'source $THIS_PATH && show_gh_status'"                            \
         "dash"              d "run -b 'source $THIS_PATH && show_gh_dash'"                              \
         ""                                                                                              \
+        "edit dash"         e "run -b 'source $THIS_PATH && edit_gh_dash'"                              \
         "Close"             q "run -b 'source $THIS_PATH && close_menu'"
 }
