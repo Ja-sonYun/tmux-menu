@@ -5,7 +5,7 @@ function show_gh_status() {
 }
 
 function show_gh_dash() {
-    tmux display-popup -x R -y P -w 50% -h 45 -E "gh dash" || true
+    tmux display-popup -x R -y P -w 150 -h 45 -E "gh dash" || true
 }
 
 function show_git_ui() {
