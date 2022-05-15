@@ -10,6 +10,7 @@ source $(dirname $THIS_PATH)/configure.sh
 source $(dirname $THIS_PATH)/project_manager.sh
 source $(dirname $THIS_PATH)/git.sh
 source $(dirname $THIS_PATH)/process.sh
+source $(dirname $THIS_PATH)/manage.sh
 
 function input_popup() {
     # args:
@@ -44,6 +45,7 @@ function show_main_menu() {
         ""                                                                                   \
         "GitHub"                    g   "run -b 'source $THIS_PATH && show_git_menu $current_dir'"        \
         "Project"                   w   "run -b 'source $THIS_PATH && show_project_menu'"    \
+        "Manage"                    s   "run -b 'source $THIS_PATH && show_manage_menu'"     \
         "Network"                   n   "run -b 'source $THIS_PATH && show_network_menu'"    \
         "Process"                   p   "run -b 'source $THIS_PATH && show_process_menu'"    \
         "Configure"                 c   "run -b 'source $THIS_PATH && show_configure_menu'"  \
