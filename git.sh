@@ -8,6 +8,10 @@ function show_gh_dash() {
     tmux display-popup -x R -y P -w 150 -h 45 -E "gh dash" || true
 }
 
+function show_git_tig() {
+    tmux display-popup -x R -y P -w 75% -h 70% -E "tig -C '$1'" || true
+}
+
 function show_git_ui() {
     tmux display-popup -x R -y P -w 75% -h 70% -E "gitui -d $1" || true
 }
@@ -24,7 +28,8 @@ function show_git_menu() {
         ""                                                                                              \
         "-#[nodim] Folder: $current_project "              ""  ""                                       \
         ""                                                                                              \
-        "gitui"             g "run -b 'source $THIS_PATH && show_git_ui $current_dir'"                  \
+        "tig"             g "run -b 'source $THIS_PATH && show_git_tig $current_dir'"                  \
+        "gitui"             u "run -b 'source $THIS_PATH && show_git_ui $current_dir'"                 \
         "status"            n "run -b 'source $THIS_PATH && show_gh_status'"                            \
         "dash"              d "run -b 'source $THIS_PATH && show_gh_dash'"                              \
         ""                                                                                              \

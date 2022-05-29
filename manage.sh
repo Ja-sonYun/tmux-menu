@@ -16,6 +16,9 @@ function show_mail() {
     tmux display-popup -x R -y P -w 50% -h 70 -E "neomutt"
 }
 
+function show_wiki() {
+    tmux display-popup -x R -y P -w 50% -h 70 -E "nvim ~/vimwiki/index.wiki"
+}
 
 function show_manage_menu() {
     current_dir="$1"
@@ -25,6 +28,7 @@ function show_manage_menu() {
         "calendar"          c "run -b 'source $THIS_PATH && show_schedule'"                             \
         "task"              t "run -b 'source $THIS_PATH && show_tasks'"                                \
         "timew"             w "run -b 'source $THIS_PATH && show_week_timew'"                           \
+        "wiki"              i "run -b 'source $THIS_PATH && show_wiki'"                                 \
         "mail"              m "run -b 'source $THIS_PATH && show_mail || true'"                         \
         ""                                                                                              \
         "Close"             q "run -b 'source $THIS_PATH && close_menu'"
