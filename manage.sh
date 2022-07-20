@@ -17,7 +17,11 @@ function show_mail() {
 }
 
 function show_wiki() {
-    tmux display-popup -x R -y P -w 50% -h 70 -E "nvim ~/vimwiki/index.wiki"
+    tmux display-popup -x R -y P -w 50% -h 70% -E "nvim ~/vimwiki/index.wiki"
+}
+
+function show_weather() {
+    tmux display-popup -x R -y P -w 127 -h 42 "curl wttr.in"
 }
 
 function show_manage_menu() {
@@ -26,10 +30,11 @@ function show_manage_menu() {
 
     tmux display-menu -T "#[align=centre fg=yellow] Manage " -x R -y P                                  \
         "calendar"          c "run -b 'source $THIS_PATH && show_schedule'"                             \
-        "task"              t "run -b 'source $THIS_PATH && show_tasks'"                                \
-        "timew"             w "run -b 'source $THIS_PATH && show_week_timew'"                           \
-        "wiki"              i "run -b 'source $THIS_PATH && show_wiki'"                                 \
-        "mail"              m "run -b 'source $THIS_PATH && show_mail || true'"                         \
+        "weather"           w "run -b 'source $THIS_PATH && show_weather'"                              \
         ""                                                                                              \
         "Close"             q "run -b 'source $THIS_PATH && close_menu'"
 }
+        # "wiki"              i "run -b 'source $THIS_PATH && show_wiki'"                                 \
+        # "task"              t "run -b 'source $THIS_PATH && show_tasks'"                                \
+        # "timew"             m "run -b 'source $THIS_PATH && show_week_timew'"                           \
+        # "mail"              e "run -b 'source $THIS_PATH && show_mail || true'"                         \
